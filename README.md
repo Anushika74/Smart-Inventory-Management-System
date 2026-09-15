@@ -51,7 +51,7 @@ and the fast/slow recommendation engine.
 If the Python AI service is not running, the Java app automatically falls
 back to an equivalent built-in rule-based AI engine, so AI insights always
 work.
-
+https://github.com/Anushika74/Smart-Inventory-Management-System/blob/main/systemArchitecture.png
 
 TECH STACK
 
