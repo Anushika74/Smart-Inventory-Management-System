@@ -1,16 +1,9 @@
--- =====================================================================
--- Smart Inventory Management System — MySQL Schema (DDL)
--- =====================================================================
--- The Java application (Hibernate, ddl-auto=update) will also create these
--- tables automatically. This script is provided for reference, the ER diagram
--- and manual setup. Run it before sample_data.sql if you import data manually.
--- =====================================================================
 
 CREATE DATABASE IF NOT EXISTS smart_inventory
     CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE smart_inventory;
 
--- ---------- Users (authentication & roles) ----------
+
 CREATE TABLE IF NOT EXISTS users (
     id          BIGINT AUTO_INCREMENT PRIMARY KEY,
     username    VARCHAR(50)  NOT NULL UNIQUE,
@@ -21,14 +14,14 @@ CREATE TABLE IF NOT EXISTS users (
     created_at  DATETIME     NOT NULL DEFAULT CURRENT_TIMESTAMP
 );
 
--- ---------- Categories ----------
+
 CREATE TABLE IF NOT EXISTS categories (
     id          BIGINT AUTO_INCREMENT PRIMARY KEY,
     name        VARCHAR(60)  NOT NULL UNIQUE,
     description VARCHAR(255)
 );
 
--- ---------- Products ----------
+
 CREATE TABLE IF NOT EXISTS products (
     id            BIGINT AUTO_INCREMENT PRIMARY KEY,
     sku           VARCHAR(40)  NOT NULL UNIQUE,
@@ -48,7 +41,7 @@ CREATE TABLE IF NOT EXISTS products (
     INDEX idx_product_category (category_id)
 );
 
--- ---------- Sales (bills / invoices) ----------
+
 CREATE TABLE IF NOT EXISTS sales (
     id             BIGINT AUTO_INCREMENT PRIMARY KEY,
     invoice_no     VARCHAR(30)  NOT NULL UNIQUE,
@@ -59,7 +52,7 @@ CREATE TABLE IF NOT EXISTS sales (
     INDEX idx_sale_date (sale_date)
 );
 
--- ---------- Sale line items ----------
+
 CREATE TABLE IF NOT EXISTS sale_items (
     id          BIGINT AUTO_INCREMENT PRIMARY KEY,
     sale_id     BIGINT NOT NULL,
@@ -73,7 +66,7 @@ CREATE TABLE IF NOT EXISTS sale_items (
     INDEX idx_item_sale (sale_id)
 );
 
--- ---------- Stock movement audit trail ----------
+
 CREATE TABLE IF NOT EXISTS stock_movements (
     id           BIGINT AUTO_INCREMENT PRIMARY KEY,
     product_id   BIGINT NOT NULL,
@@ -86,7 +79,7 @@ CREATE TABLE IF NOT EXISTS stock_movements (
     INDEX idx_movement_product (product_id)
 );
 
--- ---------- Wastage (stock lost not sold) ----------
+
 CREATE TABLE IF NOT EXISTS wastage (
     id           BIGINT AUTO_INCREMENT PRIMARY KEY,
     product_id   BIGINT NOT NULL,

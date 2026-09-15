@@ -1,4 +1,4 @@
-package com.smartinventory.service;
+A;package com.smartinventory.service;
 
 import com.smartinventory.dto.DailySalesProjection;
 import com.smartinventory.dto.DashboardStats;
