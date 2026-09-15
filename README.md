@@ -1,101 +1,64 @@
-Smart Inventory Management System with AI-Based Business Insights
+SMART INVENTORY MANAGEMENT SYSTEM WITH AI-BASED BUSINESS INSIGHTS
 
-A complete Java Web Application for a supermarket / retail shop that manages products, stock and sales, and adds four AI/ML-powered features for smart business decisions.
+A complete Java Web Application for a supermarket / retail shop that manages
+products, stock, and sales — enhanced with four AI/ML-powered features for
+smart business decisions.
 
-    Module: Java Web Application Development — Final Assignment
+Module: Java Web Application Development — Final Assignment
 
-Features
+
+FEATURES
+
 Part 1 — Core Inventory System
 
-    User Authentication — login / logout with roles (ADMIN / STAFF)
-    Product Management — add / update / delete / search products
-    Inventory Management — add stock, update quantity, view stock, low-stock alerts
-    Sales Management — record sales, generate bills/invoices, sales history
-    Reports — daily sales, monthly sales, product stock report
+  - User Authentication — login / logout with roles (ADMIN / STAFF)
+  - Product Management — add / update / delete / search products
+  - Inventory Management — add stock, update quantity, view stock,
+    low-stock alerts
+  - Sales Management — record sales, generate bills/invoices, sales history
+  - Reports — daily sales, monthly sales, product stock report
 
 Part 2 — AI / ML Enhancement
 
-    Smart Restock Prediction — predicts days-to-stockout and recommended restock quantity from sales velocity and historical demand (linear regression).
-    Fast & Slow Moving Product Analysis — classifies products as Fast / Slow / Dead stock (with charts).
-    Sales Trend Analysis — analyses daily / weekly / monthly sales and forecasts the next period.
-    Intelligent Alerts — low stock, overstock, sudden sales drops and expiring products.
+  - Smart Restock Prediction — predicts days-to-stockout and recommended
+    restock quantity from sales velocity and historical demand (linear
+    regression)
+  - Fast & Slow Moving Product Analysis — classifies products as Fast /
+    Slow / Dead stock (with charts)
+  - Sales Trend Analysis — analyzes daily / weekly / monthly sales and
+    forecasts the next period
+  - Intelligent Alerts — low stock, overstock, sudden sales drops, and
+    expiring products
 
-Required pages (all included)
+Required pages (all included):
+Login, Dashboard, Product Management, Inventory Management, Sales
+Management, Reports, AI Insights Dashboard, Prediction & Analytics
 
-Login · Dashboard · Product Management · Inventory Management · Sales Management · Reports · AI Insights Dashboard · Prediction & Analytics
-Required charts (Chart.js)
-
-Sales Trend · Product Performance · Revenue Analysis · AI Prediction
-Architecture
+Required charts (Chart.js):
+Sales Trend, Product Performance, Revenue Analysis, AI Prediction
 
 
-If the Python AI service is not running, the Java app automatically falls back to an equivalent built-in rule-based AI engine, so AI insights always work.
-🧰 Tech Stack
-Layer 	Technology
-Web / Backend 	Java 17, Spring Boot 3.3, Spring MVC, Spring Security
-Views 	Thymeleaf, Bootstrap 5, Chart.js
-Persistence 	Spring Data JPA, Hibernate, MySQL 8
-AI / ML 	Python 3, Flask, scikit-learn, pandas, numpy
-Build 	Maven
-🚀 How to Run (Ubuntu + NetBeans)
-1. Prerequisites
+ARCHITECTURE
 
-    JDK 17 or 21 (java -version)
-    Maven (bundled with NetBeans)
-    MySQL Server 8 (sudo apt install mysql-server)
-    Python 3.10+ (only if you want the ML microservice; optional)
+The system is built in layers. The browser runs Bootstrap 5 and Chart.js
+for the interface. Behind that sits the Java web app, built with Spring
+Boot 3, Spring MVC, Thymeleaf, and Spring Security. This layer talks to a
+MySQL 8 database through Spring Data JPA and Hibernate, and also calls out
+to a Flask REST API that hosts the AI/ML module built with scikit-learn.
+That AI module covers the restock prediction engine, sales trend analysis,
+and the fast/slow recommendation engine.
 
-2. Set up MySQL
+If the Python AI service is not running, the Java app automatically falls
+back to an equivalent built-in rule-based AI engine, so AI insights always
+work.
 
-sudo systemctl start mysql
-sudo mysql -u root -p
 
--- Optional: the app can auto-create the DB, but you can create it manually:
-CREATE DATABASE IF NOT EXISTS smart_inventory;
--- Make sure the credentials match application.properties (default root/root):
-ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'root';
-FLUSH PRIVILEGES;
+TECH STACK
 
-    Edit src/main/resources/application.properties if your MySQL username/password differ.
+  Web / Backend:   Java 17, Spring Boot 3.3, Spring MVC, Spring Security
+  Views:           Thymeleaf, Bootstrap 5, Chart.js
+  Persistence:     Spring Data JPA, Hibernate, MySQL 8
+  AI / ML:         Python 3, Flask, scikit-learn, pandas, numpy
+  Build:           Maven
 
-3. Run the Java web app
 
-In NetBeans: Open the project (it is a Maven project) → Right-click → Run.
-
-Or from the terminal:
-
-cd smart-inventory-system
-mvn spring-boot:run
-
-On first run the app auto-seeds 55 products and ~1200 sales records with realistic patterns (weekend spikes, fast/slow/dead stock, expiring products).
-
-Open: http://localhost:8080
-4. (Optional) Run the AI microservice
-
-cd ai-service
-python3 -m venv venv && source venv/bin/activate
-pip install -r requirements.txt
-python app.py        # serves on http://localhost:5000
-
-The Java app calls it automatically. If it's off, the rule-based fallback is used.
-5. Login
-Role 	Username 	Password
-Admin 	admin 	admin123
-Staff 	staff 	staff123
-📦 Deliverables in this repository
-Deliverable 	Location
-Source code (Java web app) 	src/
-AI model files (Flask + scikit-learn) 	ai-service/
-Database SQL file 	database/schema.sql, database/sample_data.sql
-Project report 	docs/REPORT.md
-ER diagram 	docs/ER-DIAGRAM.md
-Architecture diagram 	docs/ARCHITECTURE.md
-Run / demo notes 	this README + docs/
-🗂️ Project Structure
-
-smart-inventory-system/
-├── pom.xml
-├── src/main/java/com/smartinventory/
-│   ├── config/        # Security, seeding, AI client config
-│   ├── controller/    # MVC controllers (one per page)
-│   ├── model/         # JPA entities
